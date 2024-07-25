@@ -8,8 +8,7 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Splash from './pages/Splash'
 import Theme from './pages/Theme'
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
+import MainLayout from './Outlet'
 
 function App() {
   return (
@@ -19,10 +18,13 @@ function App() {
           <Route path='/' element={<Splash />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
-          <Route path='/my-page' element={<MyPage />} />
-          <Route path='/theme' element={<Theme />} />
-          <Route path='/image-upload' element={<ImageUpload />} />
-          <Route path='/decorate' element={<Decorate />} />
+
+          <Route element={<MainLayout />}>
+            <Route path='/my-page' element={<MyPage />} />
+            <Route path='/theme' element={<Theme />} />
+            <Route path='/image-upload' element={<ImageUpload />} />
+            <Route path='/decorate' element={<Decorate />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -61,6 +61,9 @@ export default function SignIn() {
   const handleSignUpClick = () => {
     navigate('/sign-up')
   }
+  const handleSignInClick = () => {
+    navigate('/my-page')
+  }
   return (
     <Container>
       <LogoContainer>
@@ -77,7 +80,7 @@ export default function SignIn() {
           <Input />
         </InputContainer>
       </InformationContainer>
-      <LoginButton>로그인</LoginButton>
+      <LoginButton onClick={handleSignInClick}>로그인</LoginButton>
       <SignUpLink onClick={handleSignUpClick}>회원가입</SignUpLink>
     </Container>
   )

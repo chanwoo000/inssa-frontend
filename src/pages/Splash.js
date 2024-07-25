@@ -19,7 +19,7 @@ export default function Splash() {
   useEffect(() => {
     // 3초 후에 메인 페이지로 이동
     const timer = setTimeout(() => {
-      navigate('/my-page') // 이동할 경로를 설정
+      navigate('/sign-in') // 이동할 경로를 설정
     }, 3000) // 3초 후에 이동하도록 설정
 
     // 클린업 함수

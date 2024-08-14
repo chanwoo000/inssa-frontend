@@ -1,13 +1,11 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import Decorate from './pages/Decorate'
 import ImageUpload from './pages/ImageUpload'
 import MyPage from './pages/MyPage'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
+import SignIn from './pages/Login/SignIn/SignIn'
+import SignUp from './pages/Login/SignUp/SignUp'
 import Splash from './pages/Splash'
-import Theme from './pages/Theme'
+import Image from './pages/Image'
 import MainLayout from './Outlet'
 
 function App() {
@@ -21,9 +19,8 @@ function App() {
 
           <Route element={<MainLayout />}>
             <Route path='/my-page' element={<MyPage />} />
-            <Route path='/theme' element={<Theme />} />
-            <Route path='/image-upload' element={<ImageUpload />} />
-            <Route path='/decorate' element={<Decorate />} />
+            <Route path='/image/:ImageId' element={<Image />} />
+            <Route path='/image-upload/:folderId' element={<ImageUpload />} />
           </Route>
         </Routes>
       </BrowserRouter>

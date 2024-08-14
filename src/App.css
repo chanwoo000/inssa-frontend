@@ -12,4 +12,12 @@
     flex-direction: column;
     align-items: center;
     background-color: #272727;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }

@@ -1,32 +1,13 @@
 import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import backGroundImage from '../assets/backGroundIamge.svg'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-`
-
-const Button = styled.button`
-  bottom: 130px;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  width: 260px;
-  height: 50px;
-  border-radius: 26px;
-  background-color: #fdd329;
-  border: none;
-  cursor: pointer;
-`
+import Button from '../components/Button/MainButton'
 
 const ImagePreview = styled.img`
   max-width: 120px;
   max-height: 150px;
+  cursor: pointer; /* Add pointer cursor to indicate it's clickable */
 `
 
 const ImageList = styled.div`
@@ -98,6 +79,8 @@ const ModalButton = styled.button`
 `
 
 export default function ImageUpload() {
+  const navigate = useNavigate()
+
   const [images, setImages] = useState([
     { id: 1, src: backGroundImage, date: '2023.03.30', note: '하이하이' },
     { id: 2, src: backGroundImage, date: '2023.03.30', note: '바이바이' }
@@ -141,8 +124,12 @@ export default function ImageUpload() {
     setModalOpen(false)
   }
 
+  const handleImageClick = (image) => {
+    navigate(`/image/${image.id}`, { state: image })
+  }
+
   return (
-    <Container>
+    <div className='container'>
       <input
         type='file'
         accept='image/*'
@@ -150,16 +137,19 @@ export default function ImageUpload() {
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
-      <Button onClick={handleButtonClick}>배경 추가하기</Button>
+      <Button onClick={handleButtonClick}>이미지 추가하기</Button>
       <ImageList>
         {images.map(
-          (folder) =>
-            folder.src && (
-              <ImageItem key={folder.id}>
-                <ImagePreview src={folder.src} alt={folder.name} />
-                <FolderName>{folder.name}</FolderName>
-                <div>{folder.date}</div>
-                <div>{folder.note}</div>
+          (image) =>
+            image.src && (
+              <ImageItem key={image.id}>
+                <ImagePreview
+                  src={image.src}
+                  alt={image.note}
+                  onClick={() => handleImageClick(image)}
+                />
+                <FolderName>{image.note}</FolderName>
+                <div>{image.date}</div>
               </ImageItem>
             )
         )}
@@ -189,6 +179,6 @@ export default function ImageUpload() {
           <ModalButton onClick={closeModal}>닫기</ModalButton>
         </ModalContent>
       </ModalBackground>
-    </Container>
+    </div>
   )
 }

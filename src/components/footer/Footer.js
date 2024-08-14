@@ -1,7 +1,7 @@
 import React from 'react'
-import box from '../../assets/box.svg'
-import upload from '../../assets/upload.svg'
-import pencil from '../../assets/pencil.svg'
+import box from '../../assets/footer/box.svg'
+import upload from '../../assets/footer/upload.svg'
+import pencil from '../../assets/footer/pencil.svg'
 import styled from 'styled-components'
 
 export const Container = styled.div`

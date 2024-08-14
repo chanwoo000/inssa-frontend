@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import smallLogo from '../../assets/smallLogo.svg'
+import smallLogo from '../../assets/logo/smallLogo.svg'
 export const Container = styled.div`
   position: fixed;
   top: 0;

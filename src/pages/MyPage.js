@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Modal from 'react-modal'
 import folderImage from '../assets/folder.svg'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-`
+import Button from '../components/Button/MainButton'
 
 const FolderContainer = styled.div`
   display: grid;
@@ -29,20 +24,6 @@ const Folder = styled.div`
 
 const FolderName = styled.div`
   font-size: 16px;
-`
-
-const Button = styled.button`
-  bottom: 130px;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  width: 260px;
-  height: 50px;
-  border-radius: 26px;
-  background-color: #fdd329;
-  cursor: pointer;
 `
 
 const customStyles = {
@@ -92,7 +73,7 @@ const MyPage = () => {
 
   const [modalIsOpen, setIsOpen] = useState(false)
   const [newFolderName, setNewFolderName] = useState('')
-
+  const navigate = useNavigate()
   const openModal = () => {
     setIsOpen(true)
   }
@@ -100,7 +81,9 @@ const MyPage = () => {
   const closeModal = () => {
     setIsOpen(false)
   }
-
+  const handleFolderClick = (id) => {
+    navigate(`/image-upload/${id}`)
+  }
   const handleAddFolder = () => {
     if (newFolderName.trim()) {
       // trim은 좌우 공백을 지우는 함수, 즉 폴더에 이름을 썼는지 확인하는 조건문
@@ -111,13 +94,15 @@ const MyPage = () => {
   }
 
   return (
-    <Container>
+    <div className='container'>
       <FolderContainer>
         {folders.map((folder) => (
-          <Folder key={folder.id}>
-            <img src={folderImage} alt='Folder' />
-            <FolderName>{folder.name}</FolderName>
-          </Folder>
+          <div key={folder.id} onClick={() => handleFolderClick(folder.id)}>
+            <Folder key={folder.id}>
+              <img src={folderImage} alt='Folder' />
+              <FolderName>{folder.name}</FolderName>
+            </Folder>
+          </div>
         ))}
       </FolderContainer>
       <Button onClick={openModal}>폴더 추가하기</Button>
@@ -145,7 +130,7 @@ const MyPage = () => {
           <ModalButton onClick={closeModal}>닫기</ModalButton>
         </ButtonContainer>
       </Modal>
-    </Container>
+    </div>
   )
 }
 

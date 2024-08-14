@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo/logo.svg'
 import styled from 'styled-components'
 
 const LogoContainer = styled.div`

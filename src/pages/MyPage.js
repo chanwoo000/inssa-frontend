@@ -1,65 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 import Modal from 'react-modal'
 import folderImage from '../assets/folder.svg'
-import Button from '../components/Button/MainButton'
-
-const FolderContainer = styled.div`
-  display: grid;
-  position: fixed;
-  top: 100px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 16px;
-`
-
-const Folder = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  gap: 10px;
-`
-
-const FolderName = styled.div`
-  font-size: 16px;
-`
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    transform: 'translate(-50%, -50%)',
-    background: `url(${folderImage}) no-repeat center center`,
-    backgroundSize: 'cover',
-    width: '200px', // 폴더 이미지 크기에 맞게 조정
-    height: '200px', // 폴더 이미지 크기에 맞게 조정
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '30px'
-  }
-}
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-`
-const ModalButton = styled.button`
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 50px;
-  height: 30px;
-`
-
-Modal.setAppElement('#root')
+import Button from '../components/button/MainButton'
+import * as style from '../components/mypage/MyPageStyle'
 
 const MyPage = () => {
   const [folders, setFolders] = useState([
@@ -95,21 +39,21 @@ const MyPage = () => {
 
   return (
     <div className='container'>
-      <FolderContainer>
+      <style.FolderContainer>
         {folders.map((folder) => (
           <div key={folder.id} onClick={() => handleFolderClick(folder.id)}>
-            <Folder key={folder.id}>
+            <style.Folder key={folder.id}>
               <img src={folderImage} alt='Folder' />
-              <FolderName>{folder.name}</FolderName>
-            </Folder>
+              <style.FolderName>{folder.name}</style.FolderName>
+            </style.Folder>
           </div>
         ))}
-      </FolderContainer>
+      </style.FolderContainer>
       <Button onClick={openModal}>폴더 추가하기</Button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={style.customStyles}
       >
         <input
           type='text'
@@ -125,10 +69,10 @@ const MyPage = () => {
             textAlign: 'center'
           }}
         />
-        <ButtonContainer>
-          <ModalButton onClick={handleAddFolder}>추가</ModalButton>
-          <ModalButton onClick={closeModal}>닫기</ModalButton>
-        </ButtonContainer>
+        <style.ButtonContainer>
+          <style.ModalButton onClick={handleAddFolder}>추가</style.ModalButton>
+          <style.ModalButton onClick={closeModal}>닫기</style.ModalButton>
+        </style.ButtonContainer>
       </Modal>
     </div>
   )

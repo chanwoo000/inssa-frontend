@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import logo from '../../../assets/logo/logo.svg'
+import logo from '../../assets/logo/logo.svg'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../../components/Button/SignButton'
-import Input from '../../../components/Input/input'
-import * as style from './SignInStyle'
+import Button from '../../components/button/SignButton'
+import Input from '../../components/input/Input'
+import * as style from '../../components/signin/SignInStyle'
 
 export default function SignIn() {
   const navigate = useNavigate()

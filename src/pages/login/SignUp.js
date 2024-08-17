@@ -1,30 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import logo from '../../../assets/logo/logo.svg'
+import logo from '../../assets/logo/logo.svg'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../../components/Button/SignButton'
-import Input from '../../../components/Input/input'
-
-const LogoContainer = styled.div`
-  margin: 190px 0 45px 0;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  font-size: 18px;
-  gap: 20px;
-`
-
-const InformationContainer = styled.div`
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`
-
-const ErrorMessage = styled.div`
-  color: red;
-  margin-top: 10px;
-`
+import Button from '../../components/button/SignButton'
+import Input from '../../components/input/Input'
+import * as style from '../../components/signup/SignUpStyle'
 
 export default function SignUp() {
   const navigate = useNavigate()
@@ -44,11 +23,11 @@ export default function SignUp() {
 
   return (
     <div className='container'>
-      <LogoContainer>
+      <style.LogoContainer>
         <img src={logo} alt={'logo'} />
         요즘 핫한 인생네컷 사진첩
-      </LogoContainer>
-      <InformationContainer>
+      </style.LogoContainer>
+      <style.InformationContainer>
         <Input
           label='이름'
           value={name}
@@ -71,9 +50,9 @@ export default function SignUp() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-      </InformationContainer>
+      </style.InformationContainer>
       <Button onClick={handleSignInClick}>회원가입 완료</Button>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {error && <style.ErrorMessage>{error}</style.ErrorMessage>}
     </div>
   )
 }
